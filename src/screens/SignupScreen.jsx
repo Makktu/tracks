@@ -19,7 +19,7 @@ const SignupScreen = ({ navigation }) => {
           source={image}
           resizeMode='cover'
           style={styles.image}
-          imageStyle={{ opacity: 0.6 }}
+          imageStyle={{ opacity: 0.2 }}
         >
           <View>
             <Spacer>
@@ -28,8 +28,23 @@ const SignupScreen = ({ navigation }) => {
               </Text>
             </Spacer>
             <Spacer>
-              <Input label='Email' />
-              <Input label='Password' />
+              <Input
+                style={styles.inputStyle}
+                label='Email'
+                value={email}
+                onChangeText={setEmail}
+                autoCapitalize='none'
+                autoCorrect={false}
+              />
+              <Input
+                secureTextEntry
+                style={styles.inputStyle}
+                label='Password'
+                value={password}
+                onChangeText={setPassword}
+                autoCapitalize='none'
+                autoCorrect={false}
+              />
               <Button
                 title={'Sign Up'}
                 buttonStyle={{ backgroundColor: 'dodgerblue' }}
@@ -62,6 +77,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 60,
+  },
+  inputStyle: {
+    color: 'white',
   },
 });
 
