@@ -13,13 +13,13 @@ const SignupScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.backgroundStyle}>
-        {/* <StatusBar /> */}
+        <StatusBar color='auto' />
 
         <ImageBackground
           source={image}
           resizeMode='cover'
           style={styles.image}
-          imageStyle={{ opacity: 0.2 }}
+          imageStyle={{ opacity: 0.5 }}
         >
           <View>
             <Spacer>
