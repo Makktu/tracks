@@ -3,12 +3,7 @@ import { StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import Spacer from './Spacer';
 
-export default function AuthForm({
-  headerText,
-  errorMessage,
-  buttonText,
-  onSubmit,
-}) {
+const AuthForm = ({ headerText, errorMessage, buttonText, onSubmit }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -44,12 +39,17 @@ export default function AuthForm({
           title={buttonText}
           buttonStyle={{ backgroundColor: 'dodgerblue' }}
           containerStyle={{ width: '50%', alignSelf: 'center' }}
-          onPress={() => onSubmit({ email, password })}
+          onPress={() => {
+            console.log(email, password);
+            onSubmit({ email, password });
+          }}
         />
       </Spacer>
     </>
   );
-}
+};
+
+export default AuthForm;
 
 const styles = StyleSheet.create({
   errorStyle: {

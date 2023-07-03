@@ -1,28 +1,22 @@
 import React, { useContext } from 'react';
-import {
-  View,
-  StyleSheet,
-  StatusBar,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
-import { Button } from 'react-native-elements';
-import Spacer from '../components/Spacer';
+import { View, StyleSheet, StatusBar, ImageBackground } from 'react-native';
+import { NavigationEvents } from 'react-navigation';
 import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
+import NavLink from '../components/NavLink';
 
 const image = {
   uri: 'https://images.unsplash.com/photo-1508921912186-1d1a45ebb3c1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80',
 };
 
 const SignupScreen = ({ navigation }) => {
-  const { state, signUp } = useContext(AuthContext);
+  const { state, signUp, clearErrorMessage } = useContext(AuthContext);
 
   return (
     <>
       <View style={styles.backgroundStyle}>
+        <NavigationEvents onWillFocus={clearErrorMessage} />
         <StatusBar color='auto' />
-
         <ImageBackground
           source={image}
           resizeMode='cover'
@@ -35,18 +29,11 @@ const SignupScreen = ({ navigation }) => {
             buttonText='Sign Up'
             onSubmit={signUp}
           />
-          <View>
-            <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
-              <Spacer>
-                <Button
-                  title={'Already Registered? Sign In instead'}
-                  buttonStyle={{ backgroundColor: 'darkgreen' }}
-                  style={styles.link}
-                  onPress={() => navigation.navigate('Signin')}
-                />
-              </Spacer>
-            </TouchableOpacity>
-          </View>
+          <NavLink
+            routeName='Signin'
+            theText='Already Registered? Sign In Instead'
+          />
+          <View></View>
         </ImageBackground>
       </View>
     </>
@@ -72,11 +59,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-end',
     marginBottom: 60,
-  },
-
-  link: {
-    marginHorizontal: 10,
-    fontSize: 16,
   },
 });
 
